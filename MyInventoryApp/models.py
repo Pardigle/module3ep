@@ -1,7 +1,17 @@
 from django.db import models
 
 class Supplier(models.Model):
-    pass
+    name = models.CharField(max_length=300)
+    city = models.CharField(max_length=300)
+    country = models.CharField(max_length=300)
+    created_at = models.DateTimeField(blank=True, null=True)
+    objects = models.Manager()
+
+    def getName(self):
+        return self.name
+   
+    def __str__(self):
+        return "{} - {}, {} created at: {}".format(self.name, self.city, self.country, self.created_at)
 
 class WaterBottle(models.Model):
     sku = models.CharField(max_length=10, unique=True)
